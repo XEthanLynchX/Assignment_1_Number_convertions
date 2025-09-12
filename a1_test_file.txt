@@ -1,0 +1,211 @@
+# CS 3503 Assignment 1 Test Cases
+# Format: function_name input1 input2 expected_output
+# Lines starting with # are comments
+# Empty lines are ignored
+#
+# NOTE: You are free to break these sections apart into separate files
+# or reorganize as needed for your testing approach. The TXT format was
+# chosen to give you experience with parsing various data formats you'll
+# encounter in systems programming.
+
+# =============================================================================
+# DIVISION METHOD TESTS (div_convert)
+# =============================================================================
+
+# Basic conversion tests - mirrors original hand calculations
+div_convert 104 5 404
+div_convert 156 8 234
+div_convert 255 16 FF
+div_convert 255 10 255
+div_convert 255 2 11111111
+div_convert 42 2 101010
+
+# Edge cases - zero and small numbers
+div_convert 0 2 0
+div_convert 0 8 0
+div_convert 0 10 0
+div_convert 0 16 0
+div_convert 1 2 1
+div_convert 1 8 1
+div_convert 1 16 1
+
+# Powers of base - good algorithm tests
+div_convert 8 2 1000
+div_convert 16 2 10000
+div_convert 64 8 100
+div_convert 256 16 100
+
+# Large numbers - test algorithm robustness
+div_convert 4294967295 2 11111111111111111111111111111111
+div_convert 4294967295 8 37777777777
+div_convert 4294967295 10 4294967295
+div_convert 4294967295 16 FFFFFFFF
+
+# Mixed base tests
+div_convert 42 5 132
+div_convert 42 8 52
+div_convert 42 10 42
+div_convert 42 16 2A
+
+# =============================================================================
+# SUBTRACTION METHOD TESTS (sub_convert)
+# =============================================================================
+
+# Basic conversion tests - should match division method results
+sub_convert 104 5 404
+sub_convert 156 8 234
+sub_convert 255 16 FF
+sub_convert 255 10 255
+sub_convert 255 2 11111111
+sub_convert 42 2 101010
+
+# Edge cases - zero and small numbers
+sub_convert 0 2 0
+sub_convert 0 8 0
+sub_convert 0 10 0
+sub_convert 0 16 0
+sub_convert 1 2 1
+sub_convert 1 8 1
+sub_convert 1 16 1
+
+# Powers of base
+sub_convert 8 2 1000
+sub_convert 16 2 10000
+sub_convert 64 8 100
+sub_convert 256 16 100
+
+# Large numbers - test algorithm robustness
+sub_convert 4294967295 2 11111111111111111111111111111111
+sub_convert 4294967295 8 37777777777
+sub_convert 4294967295 10 4294967295
+sub_convert 4294967295 16 FFFFFFFF
+
+# Mixed base tests
+sub_convert 42 5 132
+sub_convert 42 8 52
+sub_convert 42 10 42
+sub_convert 42 16 2A
+
+# =============================================================================
+# ALGORITHM COMPARISON TESTS
+# =============================================================================
+
+# These tests verify both algorithms produce identical results
+# Students can use these to validate their implementations
+
+# Small comparison tests
+div_convert 7 2 111
+sub_convert 7 2 111
+
+div_convert 15 8 17
+sub_convert 15 8 17
+
+div_convert 31 16 1F
+sub_convert 31 16 1F
+
+# Medium comparison tests  
+div_convert 1000 2 1111101000
+sub_convert 1000 2 1111101000
+
+div_convert 1000 8 1750
+sub_convert 1000 8 1750
+
+div_convert 1000 16 3E8
+sub_convert 1000 16 3E8
+
+# =============================================================================
+# BIT OPERATIONS TESTS (print_tables)
+# =============================================================================
+
+# Note: print_tables tests are marked as FORMATTED_OUTPUT
+# Students need to implement exact format matching for these tests
+# Expected format for each operation (3 lines total):
+# Original: Binary=<binary> Octal=<octal> Decimal=<decimal> Hex=<hex>
+# Left Shift by 3: Binary=<binary> Octal=<octal> Decimal=<decimal> Hex=<hex>
+# AND with 0xFF: Binary=<binary> Octal=<octal> Decimal=<decimal> Hex=<hex>
+
+# Basic bit operations test
+print_tables 5 FORMATTED_OUTPUT
+
+# Zero test - important edge case
+print_tables 0 FORMATTED_OUTPUT
+
+# Small numbers
+print_tables 1 FORMATTED_OUTPUT
+print_tables 7 FORMATTED_OUTPUT
+print_tables 15 FORMATTED_OUTPUT
+
+# Powers of 2 - good for bit shifting
+print_tables 8 FORMATTED_OUTPUT
+print_tables 16 FORMATTED_OUTPUT
+print_tables 32 FORMATTED_OUTPUT
+
+# Test bit masking with 0xFF
+print_tables 255 FORMATTED_OUTPUT
+print_tables 256 FORMATTED_OUTPUT
+print_tables 511 FORMATTED_OUTPUT
+
+# Larger numbers
+print_tables 1000 FORMATTED_OUTPUT
+print_tables 65535 FORMATTED_OUTPUT
+
+# Maximum value test
+print_tables 4294967295 FORMATTED_OUTPUT
+
+# =============================================================================
+# STRESS TESTS
+# =============================================================================
+
+# Test algorithm efficiency with challenging inputs
+div_convert 2147483647 2 1111111111111111111111111111111
+sub_convert 2147483647 2 1111111111111111111111111111111
+
+div_convert 1073741824 8 10000000000
+sub_convert 1073741824 8 10000000000
+
+div_convert 268435456 16 10000000
+sub_convert 268435456 16 10000000
+
+# =============================================================================
+# BOUNDARY TESTS
+# =============================================================================
+
+# Test edge cases near system limits
+div_convert 4294967294 10 4294967294
+sub_convert 4294967294 10 4294967294
+
+div_convert 4294967294 16 FFFFFFFE
+sub_convert 4294967294 16 FFFFFFFE
+
+# Test single digit results in various bases
+div_convert 4 5 4
+sub_convert 4 5 4
+
+div_convert 7 8 7
+sub_convert 7 8 7
+
+div_convert 15 16 F
+sub_convert 15 16 F
+
+# =============================================================================
+# SPECIAL CASES
+# =============================================================================
+
+# Test cases that often reveal implementation bugs
+
+# Base 5 special cases (since it's uncommon)
+div_convert 25 5 100
+sub_convert 25 5 100
+
+div_convert 124 5 444
+sub_convert 124 5 444
+
+# Hex letter cases (should be uppercase)
+div_convert 171 16 AB
+sub_convert 171 16 AB
+
+# FIXED: Corrected hex conversion (was CAFEBABE, should be CAFFFF00)
+div_convert 3405774592 16 CAFFFF00
+sub_convert 3405774592 16 CAFFFF00
+
+# End of test file
