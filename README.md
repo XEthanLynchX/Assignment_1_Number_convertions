@@ -12,6 +12,7 @@ gcc -o convert main.c
 ./convert
 ```
 ## Test Results
+```
 Test 1: div_convert(104,5) -> Expected:404 Got:404 [PASS]
 Test 2: div_convert(156,8) -> Expected:234 Got:234 [PASS]
 Test 3: div_convert(255,16) -> Expected:FF Got:FF [PASS]
@@ -170,7 +171,7 @@ Test 97: div_convert(171,16) -> Expected:AB Got:AB [PASS]
 Test 98: sub_convert(171,16) -> Expected:AB Got:AB [PASS]
 Test 99: div_convert(3405774592,16) -> Expected:CAFFFF00 Got:CAFFFF00 [PASS]
 Test 100: sub_convert(3405774592,16) -> Expected:CAFFFF00 Got:CAFFFF00 [PASS]
-
+```
 ## Notes
 - Working with binary, octal, decimal, and hexadecimal reinforced how numbers are represented differently in each base and how to convert between them.
 - Proper formatting of the outputs allowed me to easily check test cases.
